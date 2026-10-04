@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Roop Studio - Be on video without being on camera</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Record a video, pick a new voice and a real person's photo, and get a labeled AI-generated video.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="brand"><span class="logo">R</span> Roop Studio</div>
+  <span class="pill">MVP demo</span>
+</header>
+
+<main>
+  <section id="login" class="card login">
+    <h1>Welcome back</h1>
+    <p class="muted">Sign in with the demo account to try Roop Studio.</p>
+    <label>Email<input id="em" type="text" value="demo@roop.test" autocomplete="off"></label>
+    <label>Password<input id="pw" type="password" value="Demo@12345" autocomplete="off"></label>
+    <button id="li" class="btn primary">Sign in</button>
+    <p id="lerr" class="error" hidden></p>
+    <p class="hint">Demo credentials are pre-filled.</p>
+  </section>
+
+  <section id="studio" hidden>
+    <div class="hero">
+      <h1>Be on video without being on camera</h1>
+      <p class="muted">Record once. Choose a new voice and a real person's photo. Get a share-ready video, clearly labeled as AI-generated.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="step"><span>1</span> Your video</div>
+        <p class="muted small">Speak for 10 to 60 seconds. We keep your words and change how it sounds.</p>
+        <div class="row">
+          <label class="btn secondary">Record<input id="vrec" type="file" accept="video/*" capture="user" hidden></label>
+          <label class="btn secondary">Upload<input id="vup" type="file" accept="video/*" hidden></label>
+        </div>
+        <p id="vname" class="file">No video selected</p>
+      </div>
+
+      <div class="card">
+        <div class="step"><span>2</span> Person on screen</div>
+        <p class="muted small">Upload your own photo, or one you are licensed to use. Optional.</p>
+        <label class="drop" id="drop">
+          <img id="pimg" alt="" hidden>
+          <span id="ptxt">Tap to add a photo</span>
+          <input id="pf" type="file" accept="image/*" hidden>
+        </label>
+      </div>
+
+      <div class="card wide">
+        <div class="step"><span>3</span> Choose a voice</div>
+        <div id="voices" class="voices"></div>
+      </div>
+    </div>
+
+    <div class="card consent">
+      <label class="check"><input id="ok" type="checkbox">
+        <span>The video, voice and photo are mine or licensed to me. I understand the result is labeled "AI-generated".</span></label>
+      <button id="go" class="btn primary big">Create my video</button>
+      <div id="prog" class="prog" hidden><div class="bar"></div><p id="ptext">Starting...</p></div>
+      <p id="err" class="error" hidden></p>
+    </div>
+
+    <div id="result" class="card" hidden>
+      <div class="step"><span>&#10003;</span> Your video is ready</div>
+      <video id="rv" controls playsinline></video>
+      <div class="row">
+        <a id="dl" class="btn primary" download="roop-video.mp4">Download</a>
+        <button id="again" class="btn secondary">Make another</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Built with open-source tools: faster-whisper, Piper, FFmpeg, FastAPI.</p>
+  <p>Only use your own or licensed faces and voices. Every video carries an "AI-generated" label.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
